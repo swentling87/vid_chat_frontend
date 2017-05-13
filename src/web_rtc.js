@@ -33,14 +33,6 @@ class WebRtcDemo extends Component {
     this.webrtc.resume();
   };
   
-  handleStop = () => {
-    this.webrtc.stopLocalVideo();
-  };
-  
-  handleStart = () => {
-    this.webrtc.startLocalVideo();
-  };
-  
   handleJoin = () => {
     this.webrtc.joinRoom(this.state.text);
     this.webrtc.startLocalVideo();
@@ -68,10 +60,8 @@ class WebRtcDemo extends Component {
                 <video id="localVideo"></video>
               </div>
               <div>
-                <Button className={ btnState } onClick={this.handleStart} bsStyle="success">Start</Button>
                 <Button className={ btnState } onClick={this.handleResume} bsStyle="primary">Resume</Button>
                 <Button className={ btnState } onClick={this.handlePause} bsStyle="warning">Pause</Button>
-                <Button className={ btnState } onClick={this.handleStop} bsStyle="danger">Stop</Button>
               </div>
             </Col>
             <Col md={6} className="vidContainer">
