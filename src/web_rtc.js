@@ -11,8 +11,7 @@ class WebRtcDemo extends Component {
       // the id/element dom element that will hold remote videos
       remoteVideosEl: 'remoteVideos',
       // immediately ask for camera access
-      autoRequestMedia: true,
-      url: ""
+      autoRequestMedia: true
     });
   };
   
@@ -31,16 +30,25 @@ class WebRtcDemo extends Component {
   handleStart = () => {
     this.webrtc.startLocalVideo();
   };
+  
+  handleJoin = () => {
+    this.webrtc.joinRoom('test-room');
+  };
 
   render() {
       return (
           <div>
-            <Button onClick={this.handleStart} bsStyle="success">Start</Button>
-            <Button onClick={this.handleResume} bsStyle="primary">Resume</Button>
-            <Button onClick={this.handlePause} bsStyle="warning">Pause</Button>
-            <Button onClick={this.handleStop} bsStyle="danger">Stop</Button>
-            <video id="localVideo"></video>
-            <div id="remoteVideos"></div>
+            <div>
+              <Button onClick={this.handleJoin} bsStyle="success">Join Room</Button>
+            </div>
+            <div>
+              <Button onClick={this.handleStart} bsStyle="success">Start</Button>
+              <Button onClick={this.handleResume} bsStyle="primary">Resume</Button>
+              <Button onClick={this.handlePause} bsStyle="warning">Pause</Button>
+              <Button onClick={this.handleStop} bsStyle="danger">Stop</Button>
+              <video id="localVideo"></video>
+              <div id="remoteVideos"></div>
+            </div>
           </div>
       );
   };
