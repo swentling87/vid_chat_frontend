@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import SimpleWebRTC from 'simplewebrtc';
 
 class WebRtcDemo extends Component {
+  state = {
+    text: ""
+  };
   
   componentWillMount = () => {
     this.webrtc = new SimpleWebRTC({
@@ -13,6 +17,10 @@ class WebRtcDemo extends Component {
       // immediately ask for camera access
       autoRequestMedia: true
     });
+  };
+  
+  onChange = (e) => {
+    this.setState({text: e.target.value});
   };
   
   handlePause = () => {
@@ -32,23 +40,37 @@ class WebRtcDemo extends Component {
   };
   
   handleJoin = () => {
-    this.webrtc.joinRoom('test-room');
+    this.webrtc.joinRoom(this.state.text);
+    this.setState({text: ""});
+  };
+  
+  handleLeave = () => {
+    this.webrtc.leaveRoom();
+    this.webrtc.stopLocalVideo();
   };
 
   render() {
       return (
           <div>
             <div>
-              <Button onClick={this.handleJoin} bsStyle="success">Join Room</Button>
+              <input className="input_field" onChange={ this.onChange } value={ this.state.text } />
+              <Button className="vidButton" onClick={this.handleJoin} bsStyle="success">Join Room</Button>
+              <Button className="vidButton" onClick={this.handleLeave} bsStyle="danger">Leave Room</Button>
             </div>
-            <div>
-              <Button onClick={this.handleStart} bsStyle="success">Start</Button>
-              <Button onClick={this.handleResume} bsStyle="primary">Resume</Button>
-              <Button onClick={this.handlePause} bsStyle="warning">Pause</Button>
-              <Button onClick={this.handleStop} bsStyle="danger">Stop</Button>
-              <video id="localVideo"></video>
+            <Col md={6} className="vidContainer">
+              <div>
+                <video id="localVideo"></video>
+              </div>
+              <div>
+                <Button className="vidButton" onClick={this.handleStart} bsStyle="success">Start</Button>
+                <Button className="vidButton" onClick={this.handleResume} bsStyle="primary">Resume</Button>
+                <Button className="vidButton" onClick={this.handlePause} bsStyle="warning">Pause</Button>
+                <Button className="vidButton" onClick={this.handleStop} bsStyle="danger">Stop</Button>
+              </div>
+            </Col>
+            <Col md={6}>
               <div id="remoteVideos"></div>
-            </div>
+            </Col>
           </div>
       );
   };

@@ -9,11 +9,26 @@
 
 .App-header {
   background-color: #222;
-  height: 60px;
+  height: 20px;
 }
 
 .App-intro {
   font-size: large;
+}
+#remoteVideos video {
+    height: 250px;
+}
+#localVideo {
+    height: 250px;
+}
+
+.vidContainer {
+  margin-top: 20px;
+}
+
+.vidButton {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 @keyframes App-logo-spin {
