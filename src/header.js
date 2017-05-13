@@ -5,7 +5,6 @@ import {
 import logo from './logo.svg';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
-import NavItem from 'react-bootstrap/lib/NavItem';
 import './css/Header.css';
 
 class Header extends Component {
@@ -20,8 +19,8 @@ class Header extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
-              <NavItem eventKey={1} to="/"><Link to="/">Create A Room</Link></NavItem>
-              <NavItem eventKey={2}><Link to="/about">About</Link></NavItem>
+              <li><Link to="/chat">Chat!</Link></li>
+              <li><Link to="/about">About</Link></li>
               <img src={logo} className="App-logo" alt="logo" />
             </Nav>
           </Navbar.Collapse>
