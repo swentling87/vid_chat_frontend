@@ -25,6 +25,12 @@ class WebRtcDemo extends Component {
     this.setState({text: e.target.value});
   };
   
+  checkEnter = (e) => {
+    if (e.charCode === 13) {
+      this.handleJoin();
+    }
+  };
+  
   handlePause = () => {
     this.webrtc.pause();
   };
@@ -47,12 +53,13 @@ class WebRtcDemo extends Component {
 
   render() {
     var btnState = this.state.buttons ? 'vidButton' : 'hidden';
+    var joined = this.state.buttons ? 'hidden' : 'vidButton';
       return (
           <div>
           <h2>{this.state.room}</h2>
             <div>
-              <input className="input_field" onChange={ this.onChange } value={ this.state.text } />
-              <Button className="vidButton" onClick={this.handleJoin} bsStyle="success">Join Room</Button>
+              <input className={ joined } onChange={ this.onChange } value={ this.state.text } onKeyPress={this.checkEnter} />
+              <Button className={ joined } onClick={this.handleJoin} bsStyle="success">Join Room</Button>
               <Button className={ btnState } onClick={this.handleLeave} bsStyle="danger">Leave Room</Button>
             </div>
             <Col md={6} className="vidContainer">
